@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Spring Social Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" th:href="@{/}">Spring Social Login</a>
+        </div>
+        <p class="navbar-text navbar-right">
+            <span sec:authentication="name">Username</span>
+            <a th:href="@{/logout}">Logout</a>
+        </p>
+    </div>
+</nav>
+
+<div class="container">
+    <h1 class="col-sm-12">Welcome, <span sec:authentication="name">Username</span></h1>
+    <p class="col-sm-12 text-muted" sec:authentication="authorities">User authorities</p>
+
+    <form th:if="${facebookProfile == null}" action="/connect/facebook" method="POST">
+        <input type="hidden" name="scope" value="user_posts" />
+
+        <button type="submit" class="btn btn-link">Connect to Facebook</button>
+    </form>
+
+    <div th:if="${facebookProfile != null}">
+        <div th:each="post:${feed}">
+            <p>Author Name</p>
+            <p th:text="${post.from.name}">from</p>
+            <div class="panel panel-default">
+                <div th:text="${post.message}" class="panel-body"><h2>Lorem Ipsum</h2></div>
+                <img th:if="${post.picture}" th:src="${post.picture}"/>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

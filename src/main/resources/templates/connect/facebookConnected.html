@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Spring Social Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" th:href="@{/}">Spring Social Login</a>
+        </div>
+        <p class="navbar-text navbar-right">
+            <span sec:authentication="name">Username</span>
+            <a th:href="@{/logout}">Logout</a>
+        </p>
+    </div>
+</nav>
+
+
+<div class="container">
+    <span class="col-sm-12">
+        You are now connected to your Facebook account.
+        Click <a href="/">here</a> to see some entries from your Facebook feed.
+    </span>
+</div>
+
+</body>
+</html>
